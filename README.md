@@ -115,7 +115,8 @@ These are the choices I'd want a reviewer to look at. Each maps to a domain of t
 1. **Don't trust the agent — bound it with deterministic mechanisms.**
    The circuit breaker (per-job call limit) and an ENV-level daily cost ceiling live *outside* the
    agent's reasoning — a bad prompt or a loop can't disable them. Guardrails the agent can't argue
-   its way past. *(Domain 6 · Domain 2)*
+   its way past. How the whole run is kept cheap: **[docs/cost-engineering.md](docs/cost-engineering.md)**.
+   *(Domain 6 · Domain 2)*
 
 2. **Nothing ships on the model's own say-so.**
    Every deliverable goes generate → **sandbox build + tests** → **LLM judge** → fix-loop before
