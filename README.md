@@ -138,6 +138,7 @@ These are the choices I'd want a reviewer to look at. Each maps to a domain of t
    before generation. Autonomy is graduated, not all-or-nothing. *(Domain 6 — accountability)*
 
 Deeper version with trade-offs: **[docs/design-decisions.md](docs/design-decisions.md)**.
+Security posture in depth (threat model, guardrails, autonomy levels): **[docs/security.md](docs/security.md)**.
 
 ---
 
