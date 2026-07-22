@@ -103,6 +103,7 @@ flowchart TB
 | **Control plane** | Telegram bots: run reports + a control panel with bid/skip/submit buttons. | Human-in-the-loop where it matters, without blocking the autonomous path. |
 
 Full write-up: **[docs/architecture.md](docs/architecture.md)**.
+See one job end to end: **[docs/anatomy-of-a-job.md](docs/anatomy-of-a-job.md)**.
 
 ---
 
