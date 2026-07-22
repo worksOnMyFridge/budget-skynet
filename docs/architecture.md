@@ -50,7 +50,7 @@ expensive-only-when-it-pays.
 
 ## Generators
 
-**28+ deliverable-type generators**, one module each (npm package, PyPI package, MCP server,
+**30+ deliverable-type generators**, one module each (npm package, PyPI package, MCP server,
 GitHub Action, CLI tool, LangChain tool, data-analysis notebook, HTML app, smart-contract helper,
 documentation, …). Each generator:
 

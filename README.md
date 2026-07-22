@@ -20,15 +20,6 @@
 
 ---
 
-## Demo
-
-> 🎬 *2-minute walkthrough of a full cycle (scan → bid → generate → sandbox test → publish → submit)
-> — coming here.*
-
-<!-- Loom/GIF link goes here once recorded. -->
-
----
-
 ## The problem → the solution
 
 **Problem.** The NEAR AI marketplace posts small, well-specified engineering jobs (npm/PyPI
@@ -42,7 +33,7 @@ helpers, …) that pay out in NEAR tokens. Doing them by hand doesn't scale: the
 2. **Filters** aggressively (cheap model + rules + semantic dedupe) so expensive work only runs on
    jobs worth bidding.
 3. **Bids** with a job-specific proposal.
-4. **Generates** the deliverable using the right model for the task type (28+ generators).
+4. **Generates** the deliverable using the right model for the task type (30+ generators).
 5. **Verifies** it in an isolated sandbox — build + tests — and **reviews it with an LLM judge**
    before anything leaves the machine.
 6. **Publishes** to the correct registry (npm / PyPI / GitHub / Gist) and **submits** to the
@@ -73,7 +64,7 @@ flowchart TB
     subgraph LOOP["Agent loop — GitHub Actions runner"]
         scan["scan_and_bid()"] --> filt["Filter: Haiku + skip-rules + vector dedupe"]
         filt --> bid["Bid pipeline<br/>(pricing strategy — private)"]
-        bid --> gen["Generators (28+ types)<br/>Sonnet for code · Haiku for docs"]
+        bid --> gen["Generators (30+ types)<br/>Sonnet for code · Haiku for docs"]
         gen --> sbx["E2B sandbox<br/>build + pytest"]
         sbx --> qa["Quality reviewer<br/>LLM judge + fix loop"]
         qa -- "fail (budget left)" --> gen
@@ -104,7 +95,7 @@ flowchart TB
 |---|---|---|
 | **Orchestrator** (`main.py`) | Runs the full cycle: scan → bid → generate → verify → publish → submit; writes a run report + memory stats. | Single deterministic driver; every step leaves an artifact (log / commit / memory entry). |
 | **Filter layer** | Level-0 tag rules → Haiku classification → semantic dedupe against past jobs. | Expensive models never touch a job that's obviously out of scope or a near-duplicate of one already handled. |
-| **Generators (28+)** | One module per deliverable type, each with an "expert skill" context file and its own eval. | Task-type specialization beats a single mega-prompt; per-type evals catch regressions objectively. |
+| **Generators (30+)** | One module per deliverable type, each with an "expert skill" context file and its own eval. | Task-type specialization beats a single mega-prompt; per-type evals catch regressions objectively. |
 | **E2B sandbox** | Builds and tests every deliverable in isolation before it can be published. | The agent never executes generated code in its own environment. Isolation is a hard boundary. |
 | **Quality reviewer** (`quality/review.py`) | Generate → test → LLM judge (PASS/FAIL) → fix loop, with fast-fail. | Nothing ships on the agent's own confidence — a separate check gates every submission. |
 | **Circuit breaker** (`core/claude.py`) | Per-job cap on Claude calls; resets before each job. | A runaway loop can't silently drain the API budget. Cost is bounded by construction. |
@@ -167,9 +158,8 @@ not the bidding/pricing strategy. Each is standalone and commented.
 ## Results & learnings
 
 **Results**
-- **250+ NEAR earned in marketplace competition** — 2nd place in *Agent Wars Challenge 3: "The
-  Pitch"* (253.50 NEAR); 1st place in the *Fiduciary Pebbling* challenge.
-- Runs unattended on a GitHub Actions cron; 28+ deliverable types, each with an objective eval.
+- **250+ NEAR earned in marketplace competition** — 2nd place in *Agent Wars Challenge 3: "The Pitch."*
+- Runs unattended on a GitHub Actions cron; 30+ deliverable types, each with an objective eval.
 - Real deliverables shipped to npm and PyPI (NEAR tooling packages).
 
 **Learnings**
