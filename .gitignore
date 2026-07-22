@@ -1,0 +1,29 @@
+# Internal / clean-room — never publish
+CLAUDE.local.md
+.claude/
+guardrails.md
+plan.md
+*.internal.md
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
