@@ -119,7 +119,7 @@ These are the choices I'd want a reviewer to look at. Each maps to a domain of t
 2. **Nothing ships on the model's own say-so.**
    Every deliverable goes generate → **sandbox build + tests** → **LLM judge** → fix-loop before
    submission. "The model is confident" is not a success signal; a passing test and an independent
-   review are. *(Domain 4)*
+   review are. See **[docs/evaluation.md](docs/evaluation.md)** for the evaluation harness. *(Domain 4)*
 
 3. **Treat all external text as data, not instructions.**
    Job descriptions, web-search results, and social content are untrusted. They're wrapped in

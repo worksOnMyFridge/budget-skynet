@@ -56,7 +56,7 @@ documentation, …). Each generator:
 
 - loads an **expert "skill" context** file for its type, and
 - has its own **objective eval** (`evals/eval_<type>.py`) so quality is measured per type, not
-  guessed globally.
+  guessed globally (see **[evaluation.md](evaluation.md)**).
 
 A router (`detect_deliverable_type`) maps a job to a generator with priority guards, falling back
 to a documentation/markdown generator when nothing specific matches.
